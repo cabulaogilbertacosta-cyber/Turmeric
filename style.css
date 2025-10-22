@@ -4,59 +4,35 @@
   font-family:monospace
 }
 header {
-  display:flex;
+  display: flex;
   justify-content: flex-end;
-  padding: 20px 30px;
+  /* Base padding for desktop/large screens */
+  padding: 20px 30px; 
   box-shadow: 0 1px 8px rgb(255, 223, 41);
   background-color: rgb(7, 10, 10);
   position: fixed;
-  width: 96%;
+  /* Changed to 100% for full, fixed-width coverage */
+  width: 100%;
   margin: 0px;
   top: 0;
-  box-sizing: border-box;
-  
+  /* Ensure content doesn't get hidden under the scrollbar/viewport edge */
+  box-sizing: border-box; 
 }
-@media (max-width: 600px) {
-  header {
-    /* Reduce padding significantly for small screens */
-    padding: 12px 15px; 
-  }
-}
-.title {
-  margin-right: auto;
 
-}
-.logo img{
-  width: 70px;
-  height: 4dvh;
-}
-header li {
-  list-style: none;
-  display: inline-block;
-  padding: 5px 10px;
-}
-header a {
-  text-decoration: none;
-  color: rgb(255, 208, 54);
-}
-header a:hover{
-  color: rgb(250, 247, 81);
-  font-size: large;
-}
 .banner{
   background-image: url(luya.png);
-  width: 220vh;
-  height: 160vh;
+  /* Corrected to full width and a reasonable height for large screens */
+  width: 100%;
+  height: 100vh;
   background-repeat:no-repeat;
   background-size: cover;
   background-position: center;
-
-
 }
 .banner h1{
   font-size: 100px;
   opacity: 0.5;
-  font-style: uppercase;
+  /* FIX: Changed invalid 'font-style' to 'text-transform' */
+  text-transform: uppercase;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
   margin-top: 10px;
   position: absolute;
@@ -65,23 +41,21 @@ header a:hover{
   transform: translate(-50%, -50%);
 }
 .banner p {
-  font-size: 10px; 
+  font-size: 10px;	
   opacity: 0.5;
-  font-style: uppercase;
+  /* FIX: Changed invalid 'font-style' to 'text-transform' */
+  text-transform: uppercase;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
   margin-top: 65px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
 
-  
-
 .gallery {
-  
-  display: absolute;
+  /* FIX: Changed invalid 'display: absolute' to 'display: flex' */
+  display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 10vh;
@@ -90,9 +64,6 @@ header a:hover{
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
- 
-
-  
 }
 
 .album {
@@ -140,16 +111,79 @@ header a:hover{
 
 @keyframes slideLeft {
   from { transform: translateX(-120px) scale(0.8); opacity: 0; }
-  to   { transform: translateX(0) scale(1); opacity: 1; }
+  to  { transform: translateX(0) scale(1); opacity: 1; }
 }
 @keyframes slideCenter {
   from { transform: scale(0.7); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+  to  { transform: scale(1); opacity: 1; }
 }
 @keyframes slideRight {
   from { transform: translateX(120px) scale(0.8); opacity: 0; }
-  to   { transform: translateX(0) scale(1); opacity: 1; }
+  to  { transform: translateX(0) scale(1); opacity: 1; }
 }
+
+/* ******************************************** */
+/* MOBILE FRIENDLY ADJUSTMENTS (max-width: 600px)*/
+/* ******************************************** */
+@media (max-width: 600px) {
+  header {
+    /* Reduce padding significantly for small screens */
+    padding: 12px 15px; 
+  }
+  
+  .banner {
+    /* Reduce banner height to save vertical space on mobile */
+    height: 50vh; 
+  }
+  
+  .banner h1 {
+    /* Reduce font size for mobile readability */
+    font-size: 50px;
+  }
+  
+  .banner p {
+    /* Adjust spacing */
+    margin-top: 40px; 
+    font-size: 8px;
+  }
+
+  .gallery {
+    /* Remove absolute positioning to allow natural document flow */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-top: 5vh;
+    
+    /* Stack albums vertically */
+    flex-direction: column;
+    gap: 30px; /* Use a fixed, smaller gap */
+  }
+
+  .album img {
+    /* Use fixed pixel size for more predictable results on mobile */
+    width: 150px;
+    height: 150px;
+  }
+  
+  .album .infos {
+    font-size: 20px;
+  }
+  
+  /* Disable animation for a cleaner mobile experience */
+  .animate-left, .animate-center, .animate-right {
+      animation: none;
+      opacity: 1; /* Make sure they are visible */
+      transform: none;
+      animation-delay: 0s;
+  }
+
+  .s-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 #content {
 
    
@@ -284,4 +318,5 @@ footer {
   
 
   
+
 
